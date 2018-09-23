@@ -9,7 +9,7 @@ dat = np.array(p.read_csv('wine.data.csv', header = None))
 X = dat[:,1:]
 y = dat[:,0]
 X = preprocessing.scale(X)
-
+print(X)
 
 kf = KFold(n_splits=5, shuffle = True, random_state= 42)
 

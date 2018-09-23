@@ -1,5 +1,5 @@
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 class Perceptron(object):    
     def __init__(self, eta=0.01, n_iter=10):
@@ -26,8 +26,16 @@ class Perceptron(object):
     def predict(self, X):
         return np.where(self.net_input(X) >= 0.0, 1, -1)
 
+mylist1 = [[1,6], [1,7], [2,6], [3, 8]]
+X = np.array([[6], [7], [6], [8], [5] , [2], [3], [1], [0], [1]])
+y = np.array([0, 0, 0, 0, 0 , 1, 1, 1, 1, 1])
+#xlist = list(range(10))
+#print(xlist, ylist)
+#plt.scatter(xlist, ylist)
+per = Perceptron()
+per.fit(X, y)
 
-
+print(per.predict())
     
 #import pandas as pd
 #df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)

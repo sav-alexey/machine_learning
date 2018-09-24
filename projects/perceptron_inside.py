@@ -13,11 +13,13 @@ class Perceptron(object):
         for _ in range(self.n_iter):
             errors = 0
             for xi, target in zip(X, y):
+                print(w)
                 update = self.eta * (target - self.predict(xi))
                 self.w_[1:] += update * xi
                 self.w_[0] += update
                 errors += int(update != 0.0)
                 self.errors_.append(errors)
+                
         return self
 
     def net_input(self, X):
@@ -35,7 +37,7 @@ y = np.array([0, 0, 0, 0, 0 , 1, 1, 1, 1, 1])
 per = Perceptron()
 per.fit(X, y)
 
-print(per.predict())
+print(per.predict(4))
     
 #import pandas as pd
 #df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)

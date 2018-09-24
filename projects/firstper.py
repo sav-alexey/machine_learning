@@ -5,28 +5,45 @@ def sigmoid(x):
   return 1 / (1 + math.exp(-x))
 
 def neur(X, y):
-    w = 0.1
-    
+    w1 = 0.1
+    w2 = 0.1
+    e = 0.01
 #    w_ideal = 1
-    for i in range(10):
+    for i in range(9000):
         error = []
-        for x, w_ideal in zip(X, y):        
-            h = w*x
-            out = w_ideal - h
-            error.append(out**2)            
-            gr = h*out
-            delta = gr
-            d_w = 0.4*gr
-            w += d_w
-        print(sum(error)/len(error))            
-    return w
+        for x, ideal in zip(X, y):
+
+            out = w1*x + w2*(1)
+            h = sigmoid(out)*((1 - out)*out)
+            delta = ideal - out            
+#            error.append(out**2)            
+            
+            gr1 = w1*x*delta
+            gr2 = w2*1*delta
+#            delta = gr
+#            d_w = 0.1*gr
+            d_w1 = e*gr1
+            d_w2 = e*gr2
+            w1 += d_w1
+            w2 += d_w2
+            
+#            print(d_w1, d_w2)
+#        print("error = ",sum(error)/len(error))            
+    tup = (w1, w2)
+    return tup
 
 
 
-X = [9, 8, 7, 1, 2, 3]
-y = [1, 1, 1, 0, 0, 0]
+#X = [9, 8, 7, 1, 2, 3]
+#y = [1, 1, 1, 0, 0, 0]
 
-w = neur(X, y)
+X = [2, 3, 4, 5, 6, 7]
+y = [1, 2, 3, 4, 5, 6]
+
+tup = neur(X, y)
+w1 = tup[0]
+w2 = tup[1]
+print(w2)
 
 def pred(w, X):
     if X*w > 0.0:
@@ -35,16 +52,18 @@ def pred(w, X):
         prediction = 0
     return prediction
             
-print(pred(w, 1))    
+#print(pred(w, 1), w)    
 
    
 #neur(3)  
 #
-#def func(xlist, h):
-#    y = []
-#    for i in xlist:
-#        y.append(h*i)
-#    return y
+def func(xlist, w1, w2):
+    y = []
+    for i in xlist:
+        y.append(w1*i + w2*(1))
+    return y
 #
-#xlist = list(range(10)) 
-#plt.plot(func(xlist, neur(1)), xlist)
+xlist = list(range(10)) 
+plt.plot(xlist, func(xlist, w1, w2))
+plt.scatter(X, y)
+

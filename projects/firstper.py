@@ -7,28 +7,28 @@ def sigmoid(x):
 def neur(X, y):
     w1 = 0.1
     w2 = 0.1
-    e = 0.01
+    E = 0.01
 #    w_ideal = 1
-    for i in range(9000):
+    for i in range(10000):
         error = []
         for x, ideal in zip(X, y):
 
             out = w1*x + w2*(1)
-            h = sigmoid(out)*((1 - out)*out)
+#            h = sigmoid(out)*((1 - out)*out)
             delta = ideal - out            
-#            error.append(out**2)            
+            error.append(delta**2)            
             
             gr1 = w1*x*delta
             gr2 = w2*1*delta
 #            delta = gr
 #            d_w = 0.1*gr
-            d_w1 = e*gr1
-            d_w2 = e*gr2
+            d_w1 = E*gr1
+            d_w2 = E*gr2
             w1 += d_w1
             w2 += d_w2
             
 #            print(d_w1, d_w2)
-#        print("error = ",sum(error)/len(error))            
+        print("error = ",sum(error)/len(error))            
     tup = (w1, w2)
     return tup
 
@@ -37,8 +37,8 @@ def neur(X, y):
 #X = [9, 8, 7, 1, 2, 3]
 #y = [1, 1, 1, 0, 0, 0]
 
-X = [2, 3, 4, 5, 6, 7]
-y = [1, 2, 3, 4, 5, 6]
+X = [4, 6, 8, 10]
+y = [1, 2, 3, 4]
 
 tup = neur(X, y)
 w1 = tup[0]

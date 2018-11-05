@@ -4,7 +4,7 @@ https://www.coursera.org/learn/vvedenie-mashinnoe-obuchenie
 
 # Structure:
 Week 1: Decision trees
-Week 2: KNN, Mincowski space, Perceptron
+/nWeek 2: KNN, Mincowski space, Perceptron
 Week 3: SVM, Logistic regression, Evaluation Metrics, text analysis
 Week 4: Linear regression, principal component analysis
 Week 5: Random forest, Gradient boosting
